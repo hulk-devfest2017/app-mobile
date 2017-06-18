@@ -31,7 +31,7 @@ public class GameActivity extends AppCompatActivity {
             final Player player = (Player) extras.getSerializable(PLAYER_INFORMATION);
             String serverUri =
                     this.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE).getString(getString(R.string.mqttUri),"");;
-            final MqttService mqttService = new MqttService(clientId, getApplicationContext(), serverUri, getParent());
+            final MqttService mqttService = new MqttService(clientId, getApplicationContext(), serverUri, this);
             mqttService.getMqttAndroidClient().setCallback(new MqttCallbackExtended() {
                 @Override
                 public void connectComplete(boolean reconnect, String serverURI) {
