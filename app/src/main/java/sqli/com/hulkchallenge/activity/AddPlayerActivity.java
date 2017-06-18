@@ -1,8 +1,8 @@
 package sqli.com.hulkchallenge.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +24,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         EditText lastName = (EditText) findViewById(R.id.lastName);
         EditText email = (EditText) findViewById(R.id.email);
         EditText company = (EditText) findViewById(R.id.company);
+        EditText twitter = (EditText) findViewById(R.id.twitter);
 
         if(getIntent().getExtras() != null){
             playerInformation = (Player) getIntent().getExtras().getSerializable(PLAYER_INFORMATION);
@@ -33,8 +34,14 @@ public class AddPlayerActivity extends AppCompatActivity {
                 lastName.setText(playerInformation.getLastName());
                 email.setText(playerInformation.getEmail());
                 company.setText(playerInformation.getCompany());
+                twitter.setText(playerInformation.getTwitter());
+
             }
 
+        }
+
+        if (playerInformation == null){
+            playerInformation = new Player();
         }
 
         setupLaunchBtn();
@@ -53,6 +60,16 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     private void setupLaunchBtn() {
         Button launchBtn = (Button) findViewById(R.id.launchBtn);
+        EditText firstName = (EditText) findViewById(R.id.firstName);
+        EditText lastName = (EditText) findViewById(R.id.lastName);
+        EditText email = (EditText) findViewById(R.id.email);
+        EditText company = (EditText) findViewById(R.id.company);
+        EditText twitter = (EditText) findViewById(R.id.twitter);
+        playerInformation.setCompany(company.getText().toString());
+        playerInformation.setEmail(email.getText().toString());
+        playerInformation.setLastName(lastName.getText().toString());
+        playerInformation.setFirstName(firstName.getText().toString());
+        playerInformation.setTwitter(twitter.getText().toString());
         final Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(GameActivity.PLAYER_INFORMATION,playerInformation);
         launchBtn.setOnClickListener(new View.OnClickListener() {
