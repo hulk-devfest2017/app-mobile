@@ -1,16 +1,13 @@
 package sqli.com.hulkchallenge.factory;
 
-import java.util.Collections;
 import java.util.List;
 
 import ezvcard.VCard;
-import ezvcard.property.Address;
 import ezvcard.property.Email;
-import ezvcard.property.FormattedName;
 import ezvcard.property.Gender;
 import ezvcard.property.Organization;
 import ezvcard.property.StructuredName;
-import freemarker.template.utility.CollectionUtils;
+import it.auron.library.mecard.MeCard;
 import sqli.com.hulkchallenge.model.Player;
 
 /**
@@ -40,6 +37,25 @@ public class PlayerFactory {
             Gender gender = vCard.getGender();
             if(gender != null){
                 player.setMale(gender.isMale());
+            }
+        }
+        return player;
+    }
+
+    public static  Player getPlayer(MeCard meCard){
+        Player player = new Player();
+        if(meCard != null){
+            if (meCard.getEmail() != null){
+                player.setEmail(meCard.getEmail());
+            }
+            if(meCard.getName() != null){
+                player.setFirstName(meCard.getName());
+            }
+            if(meCard.getSurname() != null){
+                player.setLastName(meCard.getSurname());
+            }
+            if(meCard.getOrg() != null){
+                player.setCompany(meCard.getOrg());
             }
         }
         return player;
