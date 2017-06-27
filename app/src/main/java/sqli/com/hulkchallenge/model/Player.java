@@ -78,7 +78,7 @@ public class Player implements Serializable{
         isMale = male;
     }
 
-    public String toJson(){
+    public JSONObject toJson(){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("firstName",getFirstName());
@@ -90,6 +90,6 @@ public class Player implements Serializable{
         } catch (JSONException e) {
             System.err.print("erreur de serialisation json");
         }
-        return jsonObject.toString();
+        return jsonObject;
     }
 }
