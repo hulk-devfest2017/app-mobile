@@ -60,21 +60,21 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     private void setupLaunchBtn() {
         Button launchBtn = (Button) findViewById(R.id.launchBtn);
-        EditText firstName = (EditText) findViewById(R.id.firstName);
-        EditText lastName = (EditText) findViewById(R.id.lastName);
-        EditText email = (EditText) findViewById(R.id.email);
-        EditText company = (EditText) findViewById(R.id.company);
-        EditText twitter = (EditText) findViewById(R.id.twitter);
-        playerInformation.setCompany(company.getText().toString());
-        playerInformation.setEmail(email.getText().toString());
-        playerInformation.setLastName(lastName.getText().toString());
-        playerInformation.setFirstName(firstName.getText().toString());
-        playerInformation.setTwitter(twitter.getText().toString());
         final Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra(GameActivity.PLAYER_INFORMATION,playerInformation);
         launchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText firstName = (EditText) findViewById(R.id.firstName);
+                EditText lastName = (EditText) findViewById(R.id.lastName);
+                EditText email = (EditText) findViewById(R.id.email);
+                EditText company = (EditText) findViewById(R.id.company);
+                EditText twitter = (EditText) findViewById(R.id.twitter);
+                playerInformation.setCompany(company.getText().toString());
+                playerInformation.setEmail(email.getText().toString());
+                playerInformation.setLastName(lastName.getText().toString());
+                playerInformation.setFirstName(firstName.getText().toString());
+                playerInformation.setTwitter(twitter.getText().toString());
+                intent.putExtra(GameActivity.PLAYER_INFORMATION,playerInformation);
                 startActivity(intent);
             }
         });
