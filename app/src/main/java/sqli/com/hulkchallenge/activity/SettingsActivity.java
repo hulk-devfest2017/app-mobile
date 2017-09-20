@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import sqli.com.hulkchallenge.Constants;
 import sqli.com.hulkchallenge.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editor.putString(getString(R.string.mqttUri),((EditText)findViewById(R.id.mqttUriText)).getText().toString());
+                editor.putString(Constants.URI,((EditText)findViewById(R.id.mqttUriText)).getText().toString());
                 editor.apply();
                 finish();
             }

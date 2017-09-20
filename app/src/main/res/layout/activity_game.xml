@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sqli.com.hulkchallenge.activity.GameActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/success"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_success"
+            android:layout_above="@+id/picto_success"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:id="@id/picto_success"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_check_circle_black_24dp"
+            android:tint="@color/success"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_error"
+            android:layout_above="@+id/picto_error"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@id/picto_error"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_report_problem_black_24dp"
+            android:tint="@color/error"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/waiting_result"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_waiting_result"
+            android:layout_above="@+id/picto_waiting_result"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@id/picto_waiting_result"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_autorenew_black_24dp"
+            android:tint="@color/colorPrimary"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sending"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_sending"
+            android:layout_above="@+id/picto_sending"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@id/picto_sending"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_backup_black_24dp"
+            android:tint="@color/colorPrimary"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>
