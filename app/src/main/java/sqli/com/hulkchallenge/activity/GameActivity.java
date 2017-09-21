@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
@@ -58,20 +57,17 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
 
-                if (reconnect) {
-                    // Because Clean Session is true, we need to re-subscribe
-                    mqttService.subscribeToTopic(subscriptionTopic, null);
-                } else {
-                    if (!isMessageSent) {
-                        try {
-                            JSONObject jsonObject = new JSONObject();
-                            if (player != null) {
-                                jsonObject.put("player", player.toJson());
-                            }
-                            mqttService.publishMessage(jsonObject.toString(),publishTopic);
-                        } catch (JSONException e) {
-                            System.err.print("erreur dans la serialisation");
+                // Because Clean Session is true, we need to re-subscribe
+                mqttService.subscribeToTopic(subscriptionTopic, null);
+                if (!isMessageSent) {
+                    try {
+                        JSONObject jsonObject = new JSONObject();
+                        if (player != null) {
+                            jsonObject.put("player", player.toJson());
                         }
+                        mqttService.publishMessage(jsonObject.toString(),publishTopic);
+                    } catch (JSONException e) {
+                        System.err.print("erreur dans la serialisation");
                     }
                 }
             }
@@ -172,7 +168,6 @@ public class GameActivity extends AppCompatActivity {
         setActiveView(State.ERROR);//exception.printStackTrace();
         TextView txtError = (TextView) findViewById(R.id.txt_error);
         txtError.setText(exception.getMessage());
-        Toast.makeText(this, "erreur lors de la connexion",Toast.LENGTH_LONG).show();
     }
 
     @Override
