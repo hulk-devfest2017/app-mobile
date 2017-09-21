@@ -17,4 +17,6 @@
     <!--<string name="mqttUri">tcp://192.168.43.227:1883</string>-->
     <string name="mqttUri">tcp://10.33.44.118:1883</string>
     <string name="submit">Valider</string>
+    <string name="sending_mqtt">Envoie des informations à Hulk</string>
+    <string name="waiting_result">En attente du résultat</string>
 </resources>
