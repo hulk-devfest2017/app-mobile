@@ -20,12 +20,15 @@ public class SettingsActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.submitSettings);
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.app_name),Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();
+        final EditText mqttUriText = (EditText) findViewById(R.id.mqttUriText);
+        String mqttUri = this.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE).getString(Constants.URI, getString(R.string.mqttUri));
+        mqttUriText.setText(mqttUri);
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editor.putString(Constants.URI,((EditText)findViewById(R.id.mqttUriText)).getText().toString());
+                editor.putString(Constants.URI,mqttUriText.getText().toString());
                 editor.apply();
                 finish();
             }

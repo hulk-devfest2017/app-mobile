@@ -31,7 +31,7 @@
         <activity android:name=".activity.ScanQRCodeActivity" />
         <activity android:name=".activity.AddPlayerActivity" />
         <activity android:name=".activity.GameActivity" />
-        <activity android:name=".activity.SettingsActivity"></activity>
+        <activity android:name=".activity.SettingsActivity"/>
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService">
         </service>
