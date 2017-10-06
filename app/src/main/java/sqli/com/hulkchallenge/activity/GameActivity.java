@@ -29,11 +29,13 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String PLAYER_INFORMATION = "PLAYER_INFORMATION";
     private static final String IS_MESSAGE_SENT = "messageSent";
+    private static final String IS_RESULT_RECEIVE = "resultReceive";
 
     String clientId = "ExampleAndroidClient";
     final String subscriptionTopic = "score";
     final String publishTopic = "start";
     boolean isMessageSent;
+    boolean isResultReceive;
     private MqttService mqttService;
     private Player player;
 
@@ -42,7 +44,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        setActiveView(State.SENDING);
+        restoreFromState(savedInstanceState);
+        displayCurrentState();
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.getSerializable(PLAYER_INFORMATION) != null){
             player = (Player) extras.getSerializable(PLAYER_INFORMATION);
@@ -50,6 +53,17 @@ public class GameActivity extends AppCompatActivity {
                     this.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE).getString(Constants.URI,getString(R.string.mqttUri));
             mqttService = new MqttService(clientId, getApplicationContext(), serverUri, this);
         }
+    }
+
+    private void displayCurrentState() {
+        State state = State.SENDING;
+        if(isMessageSent){
+            state = State.WAITING_RESULT;
+        }
+        if(isResultReceive){
+            state = State.SUCCESS;
+        }
+        setActiveView(state);
     }
 
     private void handleMqttOperation(final Player player, final MqttService mqttService, MqttAndroidClient mqttAndroidClient) {
@@ -81,6 +95,7 @@ public class GameActivity extends AppCompatActivity {
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 if(subscriptionTopic.equals(topic)){
                     setActiveView(State.SUCCESS);
+                    isResultReceive = true;
                 }
             }
 
@@ -143,14 +158,20 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(IS_MESSAGE_SENT, isMessageSent);
+        outState.putBoolean(IS_RESULT_RECEIVE, isResultReceive);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        restoreFromState(savedInstanceState);
+    }
+
+    private void restoreFromState(Bundle savedInstanceState) {
         if(savedInstanceState != null){
             isMessageSent = savedInstanceState.getBoolean(IS_MESSAGE_SENT);
+            isResultReceive = savedInstanceState.getBoolean(IS_RESULT_RECEIVE);
         }
     }
 
@@ -188,11 +209,5 @@ public class GameActivity extends AppCompatActivity {
         super.onStart();
         final MqttAndroidClient mqttAndroidClient = connectToMqtt(mqttService);
         handleMqttOperation(player, mqttService, mqttAndroidClient);
-    }
-
-    @Override
-    protected void onDestroy() {
-        mqttService.getMqttAndroidClient().close();
-        super.onDestroy();
     }
 }
