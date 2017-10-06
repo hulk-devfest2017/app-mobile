@@ -62,6 +62,7 @@ public class GameActivity extends AppCompatActivity implements FailureHandler {
     }
 
     private void finishGame() {
+        setResult(RESULT_OK);
         this.finish();
     }
 
