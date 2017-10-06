@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -51,6 +52,17 @@ public class GameActivity extends AppCompatActivity implements FailureHandler {
                     this.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE).getString(Constants.URI,getString(R.string.mqttUri));
             mqttService = new MqttService(CLIENT_ID, getApplicationContext(), serverUri, this);
         }
+        Button finishBtn = (Button) findViewById(R.id.finishBtn);
+        finishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishGame();
+            }
+        });
+    }
+
+    private void finishGame() {
+        this.finish();
     }
 
     private void displayCurrentState() {

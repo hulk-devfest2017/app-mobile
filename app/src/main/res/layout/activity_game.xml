@@ -24,6 +24,13 @@
             android:src="@drawable/ic_check_circle_black_48dp"
             android:tint="@color/success"
             android:layout_centerInParent="true"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/finishBtn"
+            android:layout_below="@id/picto_success"
+            android:layout_centerInParent="true"
+            android:text="@string/finishBtn"/>
     </RelativeLayout>
 
     <RelativeLayout

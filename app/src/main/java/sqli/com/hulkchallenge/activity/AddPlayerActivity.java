@@ -12,6 +12,7 @@ import sqli.com.hulkchallenge.model.Player;
 
 public class AddPlayerActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 12;
     public static String PLAYER_INFORMATION = "PLAYER_INFORMATION";
     private Player playerInformation;
 
@@ -75,8 +76,17 @@ public class AddPlayerActivity extends AppCompatActivity {
                 playerInformation.setFirstName(firstName.getText().toString());
                 playerInformation.setTwitter(twitter.getText().toString());
                 intent.putExtra(GameActivity.PLAYER_INFORMATION,playerInformation);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(REQUEST_CODE == requestCode){
+            if (resultCode == RESULT_OK) {
+                this.finish();
+            }
+        }
     }
 }
