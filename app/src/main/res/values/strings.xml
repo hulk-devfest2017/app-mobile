@@ -19,4 +19,6 @@
     <string name="submit">Valider</string>
     <string name="sending_mqtt">Envoie des informations à Hulk</string>
     <string name="waiting_result">En attente du résultat</string>
+    <string name="tester">Tester</string>
+    <string name="testMqttOk">tout est ok</string>
 </resources>
