@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity implements FailureHandler {
     public static final String PLAYER_INFORMATION = "PLAYER_INFORMATION";
     private static final String IS_MESSAGE_SENT = "messageSent";
     private static final String IS_RESULT_RECEIVE = "resultReceive";
+    private static final String TOPIC_STOP = "stop";
 
     final String subscriptionTopic = "results";
     final String publishTopic = "start";
@@ -63,6 +64,7 @@ public class GameActivity extends AppCompatActivity implements FailureHandler {
 
     private void finishGame() {
         setResult(RESULT_OK);
+        mqttService.publishMessage("finis",TOPIC_STOP);
         this.finish();
     }
 
