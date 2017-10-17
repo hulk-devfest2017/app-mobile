@@ -16,7 +16,7 @@ public class Player implements Serializable{
     private String email;
     private String twitter;
     private String company;
-    private boolean isMale;
+    private boolean isMale = true;
 
     public Player() {
     }
