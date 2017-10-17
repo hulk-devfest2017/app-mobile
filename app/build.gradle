@@ -25,7 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     // https://mvnrepository.com/artifact/me.dm7.barcodescanner/zxing
-    compile group: 'me.dm7.barcodescanner', name: 'zxing', version: '1.9.3'
+    compile group: 'me.dm7.barcodescanner', name: 'zbar', version: '1.9.8'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
     compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     compile 'com.googlecode.ez-vcard:ez-vcard:0.10.2'
