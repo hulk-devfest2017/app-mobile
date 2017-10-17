@@ -36,7 +36,7 @@ public class PlayerFactory {
 
             Gender gender = vCard.getGender();
             if(gender != null){
-                player.setMale(gender.isMale());
+                player.setGenderMale(gender.isMale());
             }
         }
         return player;

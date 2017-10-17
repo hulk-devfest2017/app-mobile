@@ -16,7 +16,6 @@ public class AddPlayerActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 12;
     public static String PLAYER_INFORMATION = "PLAYER_INFORMATION";
     private Player playerInformation;
-    private RadioButton female;
     private RadioButton male;
     private EditText twitter;
     private EditText company;
@@ -35,7 +34,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         company = (EditText) findViewById(R.id.company);
         twitter = (EditText) findViewById(R.id.twitter);
         male = (RadioButton) findViewById(R.id.male);
-        female = (RadioButton) findViewById(R.id.female);
+        RadioButton female = (RadioButton) findViewById(R.id.female);
 
         if(getIntent().getExtras() != null){
             playerInformation = (Player) getIntent().getExtras().getSerializable(PLAYER_INFORMATION);
@@ -49,7 +48,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         email.setText(playerInformation.getEmail());
         company.setText(playerInformation.getCompany());
         twitter.setText(playerInformation.getTwitter());
-        if (playerInformation.isMale()) {
+        if (playerInformation.isGenderMale()) {
             male.setChecked(true);
         } else {
             female.setChecked(true);
@@ -80,7 +79,7 @@ public class AddPlayerActivity extends AppCompatActivity {
                 playerInformation.setLastName(lastName.getText().toString());
                 playerInformation.setFirstName(firstName.getText().toString());
                 playerInformation.setTwitter(twitter.getText().toString());
-                playerInformation.setMale(male.isChecked());
+                playerInformation.setGenderMale(male.isChecked());
                 intent.putExtra(GameActivity.PLAYER_INFORMATION,playerInformation);
                 startActivityForResult(intent, REQUEST_CODE);
             }

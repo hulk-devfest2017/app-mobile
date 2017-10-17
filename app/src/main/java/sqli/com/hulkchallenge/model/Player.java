@@ -16,18 +16,18 @@ public class Player implements Serializable{
     private String email;
     private String twitter;
     private String company;
-    private boolean isMale = true;
+    private boolean genderMale = true;
 
     public Player() {
     }
 
-    public Player(String lastName, String firstName, String email, String twitter, String company, boolean isMale) {
+    public Player(String lastName, String firstName, String email, String twitter, String company, boolean genderMale) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.twitter = twitter;
         this.company = company;
-        this.isMale = isMale;
+        this.genderMale = genderMale;
     }
 
     public String getLastName() {
@@ -70,12 +70,12 @@ public class Player implements Serializable{
         this.company = company;
     }
 
-    public boolean isMale() {
-        return isMale;
+    public boolean isGenderMale() {
+        return genderMale;
     }
 
-    public void setMale(boolean male) {
-        isMale = male;
+    public void setGenderMale(boolean genderMale) {
+        this.genderMale = genderMale;
     }
 
     public JSONObject toJson(){
@@ -86,7 +86,7 @@ public class Player implements Serializable{
             jsonObject.put("companyName",getCompany());
             jsonObject.put("emailAddress",getEmail());
             jsonObject.put("twitterAccount",getTwitter());
-            jsonObject.put("isMale",isMale());
+            jsonObject.put("genderMale", isGenderMale());
         } catch (JSONException e) {
             System.err.print("erreur de serialisation json");
         }
